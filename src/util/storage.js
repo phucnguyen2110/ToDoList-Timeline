@@ -12,7 +12,10 @@ var objectDefault = [
 ];
 export default {
     get(){
-        return JSON.parse(localStorage.getItem(TODOS_STORAGE_KEY)) || [];
+        var result = JSON.parse(localStorage.getItem(TODOS_STORAGE_KEY)) === null || JSON.parse(localStorage.getItem(TODOS_STORAGE_KEY)).length ===0 ?
+        localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(objectDefault)) : 
+        JSON.parse(localStorage.getItem(TODOS_STORAGE_KEY));
+        return result
     },
     set(todoList){
         localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(todoList));
